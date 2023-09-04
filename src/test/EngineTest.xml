@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="EngineTest (1)" project="KlotskiTest" tests="12" started="12" failures="0" errors="0" ignored="0">
+  <testsuite name="test.EngineTest" time="0.112" displayname="EngineTest" uniqueid="[engine:junit-jupiter]/[class:test.EngineTest]">
+    <testcase name="testReset" classname="test.EngineTest" time="0.079" displayname="testReset()" uniqueid="[engine:junit-jupiter]/[class:test.EngineTest]/[method:testReset()]"/>
+    <testcase name="testLoad" classname="test.EngineTest" time="0.02" displayname="testLoad()" uniqueid="[engine:junit-jupiter]/[class:test.EngineTest]/[method:testLoad()]"/>
+    <testcase name="testSave" classname="test.EngineTest" time="0.004" displayname="testSave()" uniqueid="[engine:junit-jupiter]/[class:test.EngineTest]/[method:testSave()]"/>
+    <testcase name="testMovePieceWithLegalMove" classname="test.EngineTest" time="0.003" displayname="testMovePieceWithLegalMove()" uniqueid="[engine:junit-jupiter]/[class:test.EngineTest]/[method:testMovePieceWithLegalMove()]"/>
+    <testcase name="testUndoWithNonEmptyMoveHistory" classname="test.EngineTest" time="0.0" displayname="testUndoWithNonEmptyMoveHistory()" uniqueid="[engine:junit-jupiter]/[class:test.EngineTest]/[method:testUndoWithNonEmptyMoveHistory()]"/>
+    <testcase name="testUndoWithEmptyMoveHistory" classname="test.EngineTest" time="0.001" displayname="testUndoWithEmptyMoveHistory()" uniqueid="[engine:junit-jupiter]/[class:test.EngineTest]/[method:testUndoWithEmptyMoveHistory()]"/>
+    <testcase name="testMovePieceSithLegalMove" classname="test.EngineTest" time="0.0" displayname="testMovePieceSithLegalMove()" uniqueid="[engine:junit-jupiter]/[class:test.EngineTest]/[method:testMovePieceSithLegalMove()]"/>
+    <testcase name="testMovePieceDithLegalMove" classname="test.EngineTest" time="0.0" displayname="testMovePieceDithLegalMove()" uniqueid="[engine:junit-jupiter]/[class:test.EngineTest]/[method:testMovePieceDithLegalMove()]"/>
+    <testcase name="testLoadConfiguration" classname="test.EngineTest" time="0.0" displayname="testLoadConfiguration()" uniqueid="[engine:junit-jupiter]/[class:test.EngineTest]/[method:testLoadConfiguration()]"/>
+    <testcase name="testMovePieceWithIllegalMove" classname="test.EngineTest" time="0.001" displayname="testMovePieceWithIllegalMove()" uniqueid="[engine:junit-jupiter]/[class:test.EngineTest]/[method:testMovePieceWithIllegalMove()]"/>
+    <testcase name="testMovePieceQithLegalMove" classname="test.EngineTest" time="0.0" displayname="testMovePieceQithLegalMove()" uniqueid="[engine:junit-jupiter]/[class:test.EngineTest]/[method:testMovePieceQithLegalMove()]"/>
+    <testcase name="testMovePieceAithLegalMove" classname="test.EngineTest" time="0.001" displayname="testMovePieceAithLegalMove()" uniqueid="[engine:junit-jupiter]/[class:test.EngineTest]/[method:testMovePieceAithLegalMove()]"/>
+  </testsuite>
+</testrun>

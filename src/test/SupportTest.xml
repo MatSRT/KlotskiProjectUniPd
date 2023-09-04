@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="SupportTest (3)" project="KlotskiTest" tests="11" started="11" failures="0" errors="0" ignored="0">
+  <testsuite name="test.SupportTest" time="0.1" displayname="SupportTest" uniqueid="[engine:junit-jupiter]/[class:test.SupportTest]">
+    <testcase name="testIsWinBlockNotInTargetPosition" classname="test.SupportTest" time="0.093" displayname="testIsWinBlockNotInTargetPosition()" uniqueid="[engine:junit-jupiter]/[class:test.SupportTest]/[method:testIsWinBlockNotInTargetPosition()]"/>
+    <testcase name="testIsWinBlockInTargetPosition" classname="test.SupportTest" time="0.0" displayname="testIsWinBlockInTargetPosition()" uniqueid="[engine:junit-jupiter]/[class:test.SupportTest]/[method:testIsWinBlockInTargetPosition()]"/>
+    <testcase name="testIsMoveWithinBoundsForType1" classname="test.SupportTest" time="0.002" displayname="testIsMoveWithinBoundsForType1()" uniqueid="[engine:junit-jupiter]/[class:test.SupportTest]/[method:testIsMoveWithinBoundsForType1()]"/>
+    <testcase name="testIsMoveWithinBoundsForType2" classname="test.SupportTest" time="0.0" displayname="testIsMoveWithinBoundsForType2()" uniqueid="[engine:junit-jupiter]/[class:test.SupportTest]/[method:testIsMoveWithinBoundsForType2()]"/>
+    <testcase name="testIsMoveWithinBoundsForType3" classname="test.SupportTest" time="0.001" displayname="testIsMoveWithinBoundsForType3()" uniqueid="[engine:junit-jupiter]/[class:test.SupportTest]/[method:testIsMoveWithinBoundsForType3()]"/>
+    <testcase name="testCheckForOverlapNoOverlap" classname="test.SupportTest" time="0.001" displayname="testCheckForOverlapNoOverlap()" uniqueid="[engine:junit-jupiter]/[class:test.SupportTest]/[method:testCheckForOverlapNoOverlap()]"/>
+    <testcase name="testGetNodeAtPositionNodeNotFound" classname="test.SupportTest" time="0.001" displayname="testGetNodeAtPositionNodeNotFound()" uniqueid="[engine:junit-jupiter]/[class:test.SupportTest]/[method:testGetNodeAtPositionNodeNotFound()]"/>
+    <testcase name="testCheckForOverlapPartialOverlap" classname="test.SupportTest" time="0.0" displayname="testCheckForOverlapPartialOverlap()" uniqueid="[engine:junit-jupiter]/[class:test.SupportTest]/[method:testCheckForOverlapPartialOverlap()]"/>
+    <testcase name="testIsMoveWithinBoundsForInvalidType" classname="test.SupportTest" time="0.001" displayname="testIsMoveWithinBoundsForInvalidType()" uniqueid="[engine:junit-jupiter]/[class:test.SupportTest]/[method:testIsMoveWithinBoundsForInvalidType()]"/>
+    <testcase name="testGetNodeAtPositionNodeFound" classname="test.SupportTest" time="0.001" displayname="testGetNodeAtPositionNodeFound()" uniqueid="[engine:junit-jupiter]/[class:test.SupportTest]/[method:testGetNodeAtPositionNodeFound()]"/>
+    <testcase name="testCheckForOverlapFullOverlap" classname="test.SupportTest" time="0.0" displayname="testCheckForOverlapFullOverlap()" uniqueid="[engine:junit-jupiter]/[class:test.SupportTest]/[method:testCheckForOverlapFullOverlap()]"/>
+  </testsuite>
+</testrun>
