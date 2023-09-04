@@ -37,11 +37,11 @@ public class Engine {
     public boolean isLegal() {
         return legal;
     }
-
+    
 	/**
 	 * Method to move the piece
 	 * @param event the key w a s d in order to move the piece 
-	 * @param selectedPiece the piece that has to be moved
+	 * @param selectedPiece 
 	 * @param board
 	 * @param initialPositions 
 	 * @param legal
@@ -88,17 +88,16 @@ public class Engine {
 	    boolean newPositionLegal = false;
 	    
 	    // set the type of the selected piece in order to be able to control its movement conditions
-	    int type=4;
+	    int type=0;
 	    if((selectedPiece.getWidth()==200) && (selectedPiece.getHeight()==100)) {
 		    type=1;
 	    }else if((selectedPiece.getWidth()==100) && (selectedPiece.getHeight()==200)) {
 		    type=2;
 	    }else if ((selectedPiece.getWidth()==200) && (selectedPiece.getHeight()==200)) {
 		    type=3;
-	    }else {
+	    }else if((selectedPiece.getWidth()==100) && (selectedPiece.getHeight()==100))  {
 		    type=4;
 	    }
-	   
 	    // Check if the new position is within grid limits for the selected piece
 	    if (Support.isMoveWithinBounds(newRow, newColumn, type)) {
 	        // Check if the new position is not occupied by another piece
@@ -172,6 +171,7 @@ public class Engine {
 	        JsonObject saveFile = new JsonObject();
 	        saveFile.addProperty("numberOfMoves", numberOfMoves);
 	        JsonObject initialPositionsObject = new JsonObject();
+	       
 	        
 	        for (Map.Entry<Rectangle, Integer[]> entry : currentPositions.entrySet()) {
 	            Rectangle piece = entry.getKey();
@@ -186,7 +186,6 @@ public class Engine {
 	                initialPositionsObject.add(pieceId, pieceInfo);
 	            }
 	        }
-	        
 	        saveFile.add("initialPositions", initialPositionsObject);
 
 	        Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -207,7 +206,6 @@ public class Engine {
 	}
 	
 
-	
 	public static int load(String jsonFilePath, GridPane board, Map<Rectangle, Integer[]> initialPositions ) {
 		int numberOfMoves = 0; // Initialize with a default value
 		try {
@@ -233,8 +231,8 @@ public class Engine {
 	            if (piece != null) {
 	                int newRow, newColumn;
 
-	                JsonElement rowElement = pieceInfo.get("row");
-	                JsonElement columnElement = pieceInfo.get("column");
+	                JsonElement rowElement = pieceInfo.get("y");
+	                JsonElement columnElement = pieceInfo.get("x");
 
 	                if (rowElement != null && columnElement != null) {
 	                    newRow = rowElement.getAsInt();
@@ -312,7 +310,6 @@ public class Engine {
 	    	err.setHeaderText("Error");
 			err.setContentText("No configuration data found");
 			err.showAndWait();
-	        e.printStackTrace();
 	    }
 	}
 	

@@ -28,8 +28,10 @@ public class Support {
 				maxRows=4;
 				maxColumns=3;
 				break;
-			default:
+			case 4:
 				break;
+			default:
+				return false;
 				
 		}
 	    return newRow >= 0 && newRow < maxRows && newColumn >= 0 && newColumn < maxColumns;
@@ -69,7 +71,6 @@ public class Support {
         }
         return null;
     }
-    
     
     public static boolean isWin(GridPane board, Rectangle piece) {
         int targetRow = 3;

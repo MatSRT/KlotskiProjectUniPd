@@ -6,6 +6,10 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 
+/**
+ * Support class to for json  (reading and writing) to access Rectangle objects
+ */
+
 public class RectangleTypeAdapter extends TypeAdapter<Rectangle> {
     @Override
     public void write(JsonWriter out, Rectangle value) throws IOException {

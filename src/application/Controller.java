@@ -92,14 +92,13 @@ public class Controller implements Initializable {
         anchorPane.addEventHandler(KeyEvent.KEY_PRESSED, keyEventHandler);
         
         pieces = new Rectangle[]{piece1, piece2, piece3, piece4,piece5,piece6,piece7,piece8,piece9,piece10};
-      
+        
         // Store initial positions for pieces
         for (Rectangle piece : pieces) {
         	initialPositions.put(piece, new Integer[]{GridPane.getRowIndex(piece), GridPane.getColumnIndex(piece)});
         	Integer[] initialPosition = initialPositions.get(piece);
             currentPositions.put(piece, initialPosition.clone());
         }
-        
         // Attach event handlers to the pieces
         for (Rectangle piece : pieces) {
         	piece.setOnMouseClicked(this::pieceClicked);
@@ -108,10 +107,6 @@ public class Controller implements Initializable {
     
     public void setStage(Stage stage) {
         this.stage = stage;
-    }
-    
-    public void setMC(int i) {
-    	moves=i;
     }
     
     /**
@@ -217,11 +212,6 @@ public class Controller implements Initializable {
 	public void nbm(ActionEvent e) {
 		System.out.println("NBM");
 		BoardForSolver.Traduction(board, currentPositions);
-		KlotskiSolver solver = new KlotskiSolver();
-        //String scriptFilePath = "klotski.js"; // Replace with the actual file path
-        //Object puzzleConfiguration = /* Define your puzzle configuration here */;
-        Object result = solver.solveKlotskiPuzzle("klotski.js", "solver.json");
-        System.out.println(result);
 		moves+=1;
 		MoveCounter.setText("Moves: "+moves);
 	}
@@ -261,11 +251,12 @@ public class Controller implements Initializable {
 	 */
 	
 	public void exit(ActionEvent e) {
-		Alert ex=new Alert(AlertType.INFORMATION);
+		Alert ex=new Alert(AlertType.CONFIRMATION);
 		ex.setHeaderText("Exit");
-		ex.setContentText("Game will now exit. Thank you for playing");
-		ex.showAndWait();
-		stage.close();
+		ex.setContentText("Are you sure you want to exit?");
+		if(ex.showAndWait().get()==ButtonType.OK) {
+			stage.close();
+		}
 	}
 	
 	/**

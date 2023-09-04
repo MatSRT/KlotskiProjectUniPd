@@ -1,8 +1,11 @@
 package test;
+
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import application.Engine;
 import application.MoveInfo;
+
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -15,8 +18,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -28,9 +33,10 @@ public class EngineTest {
     private Map<Rectangle, Integer[]> initialPositions;
     private Map<Rectangle, Integer[]> currentPositions;
     private Stack<MoveInfo> moveHistory;
+    private Rectangle[] pieces;
     private GridPane board;
     
-
+    
     @BeforeEach
     void setUp() {
         // Initialize test data, including initialPositions, currentPositions, moveHistory, board and alert
@@ -38,6 +44,11 @@ public class EngineTest {
         currentPositions= new HashMap<>();
         moveHistory = new Stack<>();
         board = new GridPane();
+        pieces = new Rectangle[3]; // Create an array of 3 pieces for testing
+        for (int i = 0; i < pieces.length; i++) {
+            pieces[i] = new Rectangle();
+        }
+        
     }
 
     /**
@@ -50,7 +61,10 @@ public class EngineTest {
     @Test
     void testMovePieceWithLegalMove() {
         // Create a selectedPiece Rectangle
-        Rectangle selectedPiece = new Rectangle(100, 100);
+		Rectangle piece1 = new Rectangle(1,1,100,100);
+		piece1.setId("piece1");
+        Rectangle selectedPiece = piece1;
+        initialPositions.put(piece1, new Integer[] {1,1});
 
         // Set its initial position on the grid
         GridPane.setRowIndex(selectedPiece, 1);
@@ -58,7 +72,7 @@ public class EngineTest {
 
         // Create a KeyEvent for moving the piece
         KeyEvent event = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.W, false, false, false, false);
-
+        System.out.println(initialPositions);
         // Call the movePiece method and check the result
         Engine result = Engine.movePiece(event, selectedPiece, board, initialPositions, false, moveHistory, 0);
 
@@ -172,8 +186,6 @@ public class EngineTest {
         GridPane.setRowIndex(piece, 1);
         GridPane.setColumnIndex(piece, 1);
 
-        // Ensure that moveHistory is empty
-
         // Call the undo method
         Engine.undo(moveHistory);
 
@@ -186,14 +198,12 @@ public class EngineTest {
     @Test
     void testSave() throws IOException {
         // Create test data for currentPositions
-        Integer[] position1 = {1, 2};
-        Integer[] position2 = {3, 4};
-    	Rectangle piece1 = new Rectangle(position1[0],position1[1],100,100);
-        Rectangle piece2 = new Rectangle(position2[0],position2[1],100,100);
-
-        currentPositions.put(piece1, position1);
-        currentPositions.put(piece2, position2);
-        System.out.println(currentPositions);
+		Rectangle piece1 = new Rectangle(100,100);
+		piece1.setId("piece1");
+		Rectangle piece2 = new Rectangle(100,100);
+		piece2.setId("piece2");
+		currentPositions.put(piece1, new Integer[] {1,2});
+		currentPositions.put(piece2, new Integer[] {3,3});
         
         // Define the real directory where the file will be created
         String currentDirectory = System.getProperty("user.dir");
@@ -215,12 +225,63 @@ public class EngineTest {
         // Verify the content of the saved JSON
         assertEquals(42, jsonObject.get("numberOfMoves").getAsInt());
         JsonObject initialPositionsObject = jsonObject.getAsJsonObject("initialPositions");
-        assertEquals(1, initialPositionsObject.get(piece1.getId()).getAsJsonObject().get("y").getAsInt());
         assertEquals(2, initialPositionsObject.get(piece1.getId()).getAsJsonObject().get("x").getAsInt());
+        assertEquals(1, initialPositionsObject.get(piece1.getId()).getAsJsonObject().get("y").getAsInt());
+        assertEquals(3, initialPositionsObject.get(piece2.getId()).getAsJsonObject().get("x").getAsInt());
         assertEquals(3, initialPositionsObject.get(piece2.getId()).getAsJsonObject().get("y").getAsInt());
-        assertEquals(4, initialPositionsObject.get(piece2.getId()).getAsJsonObject().get("x").getAsInt());
     }
 
+    @Test
+    public void testLoad() throws IOException {
+        String jsonFilePath = "src/Save-Config/board_stateEx.json";
+        
+		Rectangle piece1 = new Rectangle(100,200);
+		piece1.setId("piece1");
+		Rectangle piece2 = new Rectangle(100,200);
+		piece2.setId("piece2");
+		
+		initialPositions.put(piece1, new Integer[] {1,2});
+		initialPositions.put(piece2, new Integer[] {3,3});
+		
+		// Call the load method
+		int numberOfMoves = Engine.load(jsonFilePath, board, initialPositions);
+
+		// Assert the expected values
+		assertEquals(42, numberOfMoves);
+
+		// Assert the positions of pieces loaded from the JSON
+		assertEquals(0, (int) initialPositions.get(piece1)[0]);
+		assertEquals(0, (int) initialPositions.get(piece1)[1]);
+		assertEquals(2, (int) initialPositions.get(piece2)[0]);
+		assertEquals(0, (int) initialPositions.get(piece2)[1]);
+
+    }
+
+    @Test
+    public void testLoadConfiguration() throws IOException {
+        String jsonFilePath = "src/Save-Config/config1.json";
+        
+		Rectangle piece1 = new Rectangle(100,200);
+		piece1.setId("piece1");
+		Rectangle piece2 = new Rectangle(100,100);
+		piece2.setId("piece2");
+		
+		initialPositions.put(piece1, new Integer[] {0,0});
+		initialPositions.put(piece2, new Integer[] {0,3});
+		
+		//call the loadConfiguration method
+		
+		Engine.loadConfiguration(jsonFilePath, board, initialPositions);
+
+		// Assert the positions of pieces loaded from the JSON
+		assertEquals(0, (int) initialPositions.get(piece1)[0]);
+		assertEquals(0, (int) initialPositions.get(piece1)[1]);
+		assertEquals(0, (int) initialPositions.get(piece2)[0]);
+		assertEquals(3, (int) initialPositions.get(piece2)[1]);
+
+    }
+    
+    //Helper method to read form json File
     private JsonObject readJsonFromFile(File file) throws IOException {
         StringBuilder jsonContent = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -229,8 +290,9 @@ public class EngineTest {
                 jsonContent.append(line);
             }
         }
-        return new com.google.gson.JsonParser().parse(jsonContent.toString()).getAsJsonObject();
+        return JsonParser.parseString(jsonContent.toString()).getAsJsonObject();
     }
+    
 
 }
 
