@@ -209,9 +209,12 @@ public class Controller implements Initializable {
 			warning.showAndWait();
 		}
 	}
-
+    /**
+     * Method to handle the interaction between the NEXT BEST MOVE button and the solver method
+     * Solver can solve only the default configuration saving all the moves in Soluzioni.txt
+     * @param e ActionEvent when button "undo" is pressed
+     */
 	public void nbm(ActionEvent e) {
-		System.out.println("NBM");
 		try {
 			Loader.solvePuzzle();
 		} catch (IOException | InterruptedException e1) {
@@ -221,7 +224,7 @@ public class Controller implements Initializable {
 		Alert warning=new Alert(AlertType.INFORMATION);
 		warning.setTitle("Solution");
 		warning.setHeaderText("Solution");
-		warning.setContentText("Solution generated in file Soluzioni.txt");
+		warning.setContentText("Solution for default configuration generated in file Soluzioni.txt");
 		warning.showAndWait();
 	}
 	
