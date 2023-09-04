@@ -72,7 +72,6 @@ public class EngineTest {
 
         // Create a KeyEvent for moving the piece
         KeyEvent event = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.W, false, false, false, false);
-        System.out.println(initialPositions);
         // Call the movePiece method and check the result
         Engine result = Engine.movePiece(event, selectedPiece, board, initialPositions, false, moveHistory, 0);
 
@@ -80,6 +79,97 @@ public class EngineTest {
         assertTrue(result.isLegal());
         assertEquals(0, GridPane.getRowIndex(selectedPiece));
         assertEquals(1, GridPane.getColumnIndex(selectedPiece)); 
+    }
+    
+    @Test
+    void testMovePieceAithLegalMove() {
+        // Create a selectedPiece Rectangle
+		Rectangle piece1 = new Rectangle(1,1,100,100);
+		piece1.setId("piece1");
+        Rectangle selectedPiece = piece1;
+        initialPositions.put(piece1, new Integer[] {1,1});
+
+        // Set its initial position on the grid
+        GridPane.setRowIndex(selectedPiece, 1);
+        GridPane.setColumnIndex(selectedPiece, 1);
+
+        // Create a KeyEvent for moving the piece
+        KeyEvent event = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.A, false, false, false, false);
+        // Call the movePiece method and check the result
+        Engine result = Engine.movePiece(event, selectedPiece, board, initialPositions, false, moveHistory, 0);
+
+        // Assert that the move was successful (legal) and that the position is updated
+        assertTrue(result.isLegal());
+        assertEquals(1, GridPane.getRowIndex(selectedPiece));
+        assertEquals(0, GridPane.getColumnIndex(selectedPiece)); 
+    }
+    
+    @Test
+    void testMovePieceSithLegalMove() {
+        // Create a selectedPiece Rectangle
+		Rectangle piece1 = new Rectangle(1,1,100,100);
+		piece1.setId("piece1");
+        Rectangle selectedPiece = piece1;
+        initialPositions.put(piece1, new Integer[] {1,1});
+
+        // Set its initial position on the grid
+        GridPane.setRowIndex(selectedPiece, 1);
+        GridPane.setColumnIndex(selectedPiece, 1);
+
+        // Create a KeyEvent for moving the piece
+        KeyEvent event = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.S, false, false, false, false);
+        // Call the movePiece method and check the result
+        Engine result = Engine.movePiece(event, selectedPiece, board, initialPositions, false, moveHistory, 0);
+
+        // Assert that the move was successful (legal) and that the position is updated
+        assertTrue(result.isLegal());
+        assertEquals(2, GridPane.getRowIndex(selectedPiece));
+        assertEquals(1, GridPane.getColumnIndex(selectedPiece)); 
+    }
+    
+    @Test
+    void testMovePieceDithLegalMove() {
+        // Create a selectedPiece Rectangle
+		Rectangle piece1 = new Rectangle(1,1,100,100);
+		piece1.setId("piece1");
+        Rectangle selectedPiece = piece1;
+        initialPositions.put(piece1, new Integer[] {1,1});
+
+        // Set its initial position on the grid
+        GridPane.setRowIndex(selectedPiece, 1);
+        GridPane.setColumnIndex(selectedPiece, 1);
+
+        // Create a KeyEvent for moving the piece
+        KeyEvent event = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.D, false, false, false, false);
+        // Call the movePiece method and check the result
+        Engine result = Engine.movePiece(event, selectedPiece, board, initialPositions, false, moveHistory, 0);
+
+        // Assert that the move was successful (legal) and that the position is updated
+        assertTrue(result.isLegal());
+        assertEquals(1, GridPane.getRowIndex(selectedPiece));
+        assertEquals(2, GridPane.getColumnIndex(selectedPiece)); 
+    }
+    
+    @Test
+    void testMovePieceQithLegalMove() {
+        // Create a selectedPiece Rectangle
+		Rectangle piece1 = new Rectangle(1,1,100,100);
+		piece1.setId("piece1");
+        Rectangle selectedPiece = piece1;
+        initialPositions.put(piece1, new Integer[] {1,1});
+
+        // Set its initial position on the grid
+        GridPane.setRowIndex(selectedPiece, 1);
+        GridPane.setColumnIndex(selectedPiece, 1);
+
+        // Create a KeyEvent for moving the piece
+        KeyEvent event = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.Q, false, false, false, false);
+        // Call the movePiece method and check the result
+        Engine result = Engine.movePiece(event, selectedPiece, board, initialPositions, false, moveHistory, 0);
+
+        // Assert that the move was successful (legal) and that the position is updated
+        assertFalse(result.isLegal());
+ 
     }
 
     /**

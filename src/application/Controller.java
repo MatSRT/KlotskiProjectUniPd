@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,14 +46,14 @@ public class Controller implements Initializable {
 
 	
     private Rectangle selectedPiece; // Rectangle object to identify the piece selected with mouse
-	private Rectangle[] pieces; //Array used to handle all the Rectangle objects on the board
+	public Rectangle[] pieces; //Array used to handle all the Rectangle objects on the board
 	
     /**
      * Elements injected from FXML file.
      */
 	
 	@FXML
-    private AnchorPane anchorPane;
+	public AnchorPane anchorPane;
     @FXML
     private GridPane board;
     
@@ -130,7 +131,7 @@ public class Controller implements Initializable {
      * moveHistory is updated in order to be able to undo the move
      */
     
-    private final EventHandler<KeyEvent> keyEventHandler = event -> {
+    public EventHandler<KeyEvent> keyEventHandler = event -> {
         result = Engine.movePiece(event, selectedPiece, board, initialPositions, legal, moveHistory, moves);
         legal = result.isLegal();
 
@@ -211,9 +212,17 @@ public class Controller implements Initializable {
 
 	public void nbm(ActionEvent e) {
 		System.out.println("NBM");
-		BoardForSolver.Traduction(board, currentPositions);
-		moves+=1;
-		MoveCounter.setText("Moves: "+moves);
+		try {
+			Loader.solvePuzzle();
+		} catch (IOException | InterruptedException e1) {
+			
+			e1.printStackTrace();
+		}
+		Alert warning=new Alert(AlertType.INFORMATION);
+		warning.setTitle("Solution");
+		warning.setHeaderText("Solution");
+		warning.setContentText("Solution generated in file Soluzioni.txt");
+		warning.showAndWait();
 	}
 	
 	/**

@@ -1,6 +1,30 @@
 {
-  "numberOfMoves": 10,
+  "numberOfMoves": 3,
   "initialPositions": {
+    "piece1": {
+      "y": 0,
+      "x": 0
+    },
+    "piece7": {
+      "y": 3,
+      "x": 2
+    },
+    "piece10": {
+      "y": 4,
+      "x": 3
+    },
+    "piece4": {
+      "y": 0,
+      "x": 1
+    },
+    "piece8": {
+      "y": 0,
+      "x": 3
+    },
+    "piece3": {
+      "y": 4,
+      "x": 2
+    },
     "piece9": {
       "y": 2,
       "x": 3
@@ -9,37 +33,13 @@
       "y": 2,
       "x": 0
     },
-    "piece8": {
-      "y": 0,
-      "x": 3
-    },
-    "piece7": {
-      "y": 4,
+    "piece6": {
+      "y": 3,
       "x": 1
     },
     "piece5": {
       "y": 2,
       "x": 1
-    },
-    "piece10": {
-      "y": 3,
-      "x": 2
-    },
-    "piece3": {
-      "y": 3,
-      "x": 1
-    },
-    "piece4": {
-      "y": 0,
-      "x": 1
-    },
-    "piece1": {
-      "y": 0,
-      "x": 0
-    },
-    "piece6": {
-      "y": 4,
-      "x": 0
     }
   }
 }

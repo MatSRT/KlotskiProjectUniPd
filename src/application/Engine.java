@@ -206,6 +206,14 @@ public class Engine {
 	}
 	
 
+	/**
+	 * Method to load a saved board
+	 * @param jsonFilePath
+	 * @param board
+	 * @param initialPositions
+	 * @return number of moves saved
+	 */
+	
 	public static int load(String jsonFilePath, GridPane board, Map<Rectangle, Integer[]> initialPositions ) {
 		int numberOfMoves = 0; // Initialize with a default value
 		try {
@@ -216,6 +224,8 @@ public class Engine {
 	        if (numberOfMovesElement != null) {
 	            numberOfMoves = numberOfMovesElement.getAsInt();
 	        }
+	        
+	        //loading pieces from save file
 	        
 	        for (Map.Entry<String, JsonElement> entry : jsonObject.getAsJsonObject("initialPositions").entrySet()) {
 	            String pieceId = entry.getKey();
@@ -261,6 +271,12 @@ public class Engine {
 		return numberOfMoves;
 	}
 
+	/**
+	 * Method to load a configuration from configuration files
+	 * @param jsonFilePath
+	 * @param board
+	 * @param initialPositions
+	 */
 	
 	public static void loadConfiguration(String jsonFilePath, GridPane board, Map<Rectangle, Integer[]> initialPositions) {
 	    try {
@@ -271,7 +287,7 @@ public class Engine {
 	        for (Map.Entry<String, JsonElement> entry : jsonObject.getAsJsonObject("initialPositions").entrySet()) {
 	            String pieceId = entry.getKey();
 	            JsonObject pieceInfo = entry.getValue().getAsJsonObject();
-
+	            
 	            Rectangle piece = null;
 	            for (Map.Entry<Rectangle, Integer[]> positionEntry : initialPositions.entrySet()) {
 	                if (positionEntry.getKey().getId().equals(pieceId)) {

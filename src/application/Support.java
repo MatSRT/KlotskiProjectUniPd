@@ -12,9 +12,20 @@ import javafx.scene.shape.Rectangle;
 
 public class Support {
 
+	/**
+	 * Method to check if the move is within the bounds of the board
+	 * @param newRow
+	 * @param newColumn
+	 * @param type
+	 * @return true if the move doesn't put the piece outside the board, false otherwise
+	 */
+	
     public static boolean isMoveWithinBounds(int newRow, int newColumn, int type) {
 		int maxRows=5;
 		int maxColumns=4;
+		
+		//Define limits to moves based on type of piece
+		
 		switch(type) {
 			case 1:
 				maxRows=5;
@@ -37,6 +48,16 @@ public class Support {
 	    return newRow >= 0 && newRow < maxRows && newColumn >= 0 && newColumn < maxColumns;
 	}
 
+    /**
+     * Method to check for a piece if it's overlapping another
+     * @param pieceToCheck
+     * @param newRow
+     * @param newColumn
+     * @param initialPositions
+     * @return true if overlap detected, false otherwise
+     */
+    
+    
 	public static boolean checkForOverlap(Rectangle pieceToCheck, int newRow, int newColumn, Map<Rectangle, Integer[]> initialPositions) {
 	    int pieceRowCount = (int) Math.ceil(pieceToCheck.getHeight() / 100);
 	    int pieceColumnCount = (int) Math.ceil(pieceToCheck.getWidth() / 100);
@@ -59,6 +80,14 @@ public class Support {
 	    return false; // No overlap detected
 	}
 
+	/**
+	 * Method to verify if the node of the gird pane is empty
+	 * @param board
+	 * @param row
+	 * @param column
+	 * @return node of the grid pane if there is a piece, null otherwise
+	 */
+	
     public static Node getNodeAtPosition(GridPane board, int row, int column) {
         for (Node node : board.getChildren()) {
             Integer rowIndex = GridPane.getRowIndex(node);
@@ -71,6 +100,13 @@ public class Support {
         }
         return null;
     }
+    
+    /**
+     * Method to check if the player won
+     * @param board
+     * @param piece
+     * @return true if the goal piece (200x200) is in position 3,1, false otherwise
+     */
     
     public static boolean isWin(GridPane board, Rectangle piece) {
         int targetRow = 3;
@@ -85,5 +121,6 @@ public class Support {
 
         return false; // Block is not in the target position
     }
+    
     
 }

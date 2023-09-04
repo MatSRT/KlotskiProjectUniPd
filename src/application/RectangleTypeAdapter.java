@@ -11,6 +11,11 @@ import java.io.IOException;
  */
 
 public class RectangleTypeAdapter extends TypeAdapter<Rectangle> {
+	
+	/**
+	 * Method to write a rectangle value in a json file
+	 */
+	
     @Override
     public void write(JsonWriter out, Rectangle value) throws IOException {
         out.beginObject();
@@ -22,6 +27,10 @@ public class RectangleTypeAdapter extends TypeAdapter<Rectangle> {
         out.endObject();
     }
 
+    /**
+     * Method to read and deserialize the information in order to create a rectangle object form json file
+     */
+    
     @Override
     public Rectangle read(JsonReader in) throws IOException {
         String id=null;
