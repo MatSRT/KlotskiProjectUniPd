@@ -1,7 +1,7 @@
 # KlotskiProjectUniPd
 Final Project for Software Engineering course at UniPD
 
-(Sartori, Damian, Cattapan)
+Sartori, Damian, Cattapan
 
 # Documentation
 Documentation available at Doc folder
